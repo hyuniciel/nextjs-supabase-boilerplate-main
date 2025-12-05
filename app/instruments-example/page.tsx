@@ -11,6 +11,9 @@
 import { createClient } from "@/lib/supabase/server";
 import { Suspense } from "react";
 
+// 동적 렌더링 강제 (Clerk 인증 사용)
+export const dynamic = "force-dynamic";
+
 async function InstrumentsData() {
   const supabase = await createClient();
   const { data: instruments } = await supabase.from("instruments").select();

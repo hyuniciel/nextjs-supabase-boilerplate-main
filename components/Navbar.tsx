@@ -2,6 +2,7 @@ import { SignedOut, SignInButton, SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { ShoppingCart } from "lucide-react";
 
 /**
  * 네비게이션 바 컴포넌트
@@ -18,6 +19,13 @@ const Navbar = () => {
         SaaS Template
       </Link>
       <div className="flex gap-4 items-center">
+        <SignedIn>
+          <Link href="/cart">
+            <Button variant="ghost" size="icon" aria-label="장바구니">
+              <ShoppingCart className="w-5 h-5" />
+            </Button>
+          </Link>
+        </SignedIn>
         <SignedOut>
           {/* SignInButton은 ClerkProvider의 localization 설정을 자동으로 상속받습니다 */}
           <SignInButton mode="modal">
