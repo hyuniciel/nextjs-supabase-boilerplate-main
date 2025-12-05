@@ -11,7 +11,6 @@
 
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { getServiceRoleClient } from "@/lib/supabase/service-role";
 
 /**
@@ -70,8 +69,8 @@ export async function updateOrderPaymentStatus(
     revalidatePath("/orders");
     revalidatePath(`/orders/${orderId}`);
 
-    // 주문 상세 페이지로 리다이렉트
-    redirect(`/orders/${orderId}`);
+    // 성공 반환 (리다이렉트는 호출하는 쪽에서 처리)
+    return { success: true };
   } catch (error) {
     console.error("Update order payment status error:", error);
     return { error: "결제 상태 업데이트 중 오류가 발생했습니다." };

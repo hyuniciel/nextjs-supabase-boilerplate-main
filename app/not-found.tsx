@@ -8,6 +8,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Home, ArrowLeft } from "lucide-react";
+import BackButton from "./back-button";
 
 /**
  * 404 페이지
@@ -31,14 +32,7 @@ export default function NotFound() {
               홈으로 가기
             </Button>
           </Link>
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={() => window.history.back()}
-          >
-            <ArrowLeft className="mr-2 w-4 h-4" />
-            이전 페이지로
-          </Button>
+          <BackButton />
         </div>
       </div>
     </main>

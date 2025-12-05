@@ -6,7 +6,7 @@
 - [ ] `.husky/` 디렉토리
 - [ ] `app/` 디렉토리
   - [ ] `favicon.ico` 파일
-  - [ ] `not-found.tsx` 파일
+  - [x] `not-found.tsx` 파일
   - [ ] `robots.ts` 파일
   - [ ] `sitemap.ts` 파일
   - [ ] `manifest.ts` 파일
@@ -15,14 +15,13 @@
   - [ ] `icons/` 디렉토리
   - [ ] `logo.png` 파일
   - [ ] `og-image.png` 파일
-- [ ] `tsconfig.json` 파일
+- [x] `tsconfig.json` 파일
 - [ ] `.cursorignore` 파일
-- [ ] `.gitignore` 파일
+- [x] `.gitignore` 파일
 - [ ] `.prettierignore` 파일
 - [ ] `.prettierrc` 파일
-- [ ] `tsconfig.json` 파일
-- [ ] `eslint.config.mjs` 파일
-- [ ] `AGENTS.md` 파일
+- [x] `eslint.config.mjs` 파일
+- [x] `AGENTS.md` 파일
 
 
 - [x] Phase 1: 기본 인프라
@@ -59,13 +58,13 @@
   - [x] Vercel 배포 설정 및 환경변수 구성
 
 - [ ] 공통 작업 & 문서화
-  - [ ] 오류/로딩/비어있는 상태 UI 정비
-  - [ ] 타입 안전성 강화 (Zod + react-hook-form 적용 구간)
-  - [ ] README/PRD 반영, 운영 가이드 업데이트
+  - [x] 오류/로딩/비어있는 상태 UI 정비
+  - [x] 타입 안전성 강화 (Zod + react-hook-form 적용 구간)
+  - [x] README/PRD 반영, 운영 가이드 업데이트
   - [ ] 접근성/반응형/다크모드 점검
 
 - [ ] 환경/리포지토리 기초 세팅
-  - [ ] `.gitignore` / `.cursorignore` 정비
-  - [ ] `eslint.config.mjs` / 포맷터 설정 확정
+  - [x] `.gitignore` / `.cursorignore` 정비
+  - [x] `eslint.config.mjs` / 포맷터 설정 확정
   - [ ] 아이콘/OG 이미지/파비콘 추가 (`public/`)
   - [ ] SEO 관련 파일 (`robots.ts`, `sitemap.ts`, `manifest.ts`)

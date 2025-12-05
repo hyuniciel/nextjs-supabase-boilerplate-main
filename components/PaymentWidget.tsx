@@ -13,7 +13,7 @@
 import { useEffect, useState } from "react";
 import { loadTossPayments } from "@tosspayments/payment-sdk";
 import { Button } from "@/components/ui/button";
-import { PaymentRequestParams, PaymentMethod } from "@/types/payment";
+import { PaymentMethod } from "@/types/payment";
 import { Loader2, CreditCard, Building2, Smartphone } from "lucide-react";
 
 interface PaymentWidgetProps {
