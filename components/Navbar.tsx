@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 /**
  * 네비게이션 바 컴포넌트
@@ -14,11 +15,13 @@ import { ShoppingCart } from "lucide-react";
  */
 const Navbar = () => {
   return (
-    <header className="flex justify-between items-center p-4 gap-4 h-16 max-w-7xl mx-auto">
-      <Link href="/" className="text-2xl font-bold">
-        SaaS Template
-      </Link>
-      <div className="flex gap-4 items-center">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="flex justify-between items-center p-4 gap-4 h-16 max-w-7xl mx-auto">
+        <Link href="/" className="text-xl sm:text-2xl font-bold" aria-label="홈으로 이동">
+          쇼핑몰 MVP
+        </Link>
+      <nav className="flex gap-2 sm:gap-4 items-center" aria-label="주요 네비게이션">
+        <ThemeToggle />
         <SignedIn>
           <Link href="/cart">
             <Button variant="ghost" size="icon" aria-label="장바구니">
@@ -42,6 +45,7 @@ const Navbar = () => {
             }}
           />
         </SignedIn>
+      </nav>
       </div>
     </header>
   );

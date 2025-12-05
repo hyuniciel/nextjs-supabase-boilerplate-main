@@ -64,16 +64,19 @@ export async function addToCart(productId: string, quantity: number = 1) {
     }
 
     // 장바구니에 추가 또는 업데이트
-    const { error } = await supabase.from("cart_items").upsert(
-      {
-        clerk_id: userId,
-        product_id: productId,
-        quantity: newQuantity,
-      },
-      {
-        onConflict: "clerk_id,product_id",
-      }
-    );
+    const { error } = await supabase
+      .from("cart_items")
+      .upsert(
+        {
+          clerk_id: userId,
+          product_id: productId,
+          quantity: newQuantity,
+          updated_at: new Date().toISOString(),
+        },
+        {
+          onConflict: "clerk_id,product_id",
+        }
+      );
 
     if (error) {
       console.error("Add to cart error:", error);

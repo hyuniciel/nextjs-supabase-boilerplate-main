@@ -56,7 +56,8 @@ export default function ProductCard({ product, searchTerm }: ProductCardProps) {
   return (
     <Link
       href={`/products/${product.id}`}
-      className="group relative flex flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-md hover:scale-[1.02]"
+      className="group relative flex flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-md hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+      aria-label={`${product.name} 상품 상세 보기`}
     >
       {/* 상품 이미지 */}
       <ProductImage imageUrl={product.image_url} alt={product.name} />

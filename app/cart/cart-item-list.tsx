@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Trash2, Plus, Minus } from "lucide-react";
 import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface CartItemListProps {
@@ -41,19 +42,25 @@ export default function CartItemList({ items }: CartItemListProps) {
 function CartItemCard({ item }: { item: CartItemWithProduct }) {
   const [quantity, setQuantity] = useState(item.quantity);
   const [isPending, startTransition] = useTransition();
-  const product = item.product as any;
+  const [isRemoving, setIsRemoving] = useState(false);
+  const router = useRouter();
+  const product = item.product;
 
   const handleQuantityChange = (newQuantity: number) => {
-    if (newQuantity < 1 || newQuantity > (product?.stock_quantity || 0)) {
+    if (newQuantity < 1 || newQuantity > product.stock_quantity) {
       return;
     }
 
+    const previousQuantity = quantity;
     setQuantity(newQuantity);
     startTransition(async () => {
       const result = await updateCartQuantity(item.id, newQuantity);
       if (result.error) {
         alert(result.error);
-        setQuantity(item.quantity); // 롤백
+        setQuantity(previousQuantity); // 롤백
+      } else {
+        // 성공 시 페이지 새로고침하여 총액 등 업데이트
+        router.refresh();
       }
     });
   };
@@ -63,33 +70,48 @@ function CartItemCard({ item }: { item: CartItemWithProduct }) {
       return;
     }
 
+    setIsRemoving(true);
     startTransition(async () => {
       const result = await removeFromCart(item.id);
       if (result.error) {
         alert(result.error);
+        setIsRemoving(false);
+      } else {
+        // 성공 시 페이지 새로고침하여 UI 업데이트
+        router.refresh();
       }
     });
   };
 
-  const itemTotal = (product?.price || 0) * quantity;
-  const maxQuantity = product?.stock_quantity || 0;
+  const itemTotal = product.price * quantity;
+  const maxQuantity = product.stock_quantity;
+
+  if (isRemoving) {
+    return (
+      <div className="flex gap-4 p-4 border rounded-lg bg-card opacity-50">
+        <div className="flex-1">
+          <p className="text-muted-foreground">삭제 중...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex gap-4 p-4 border rounded-lg bg-card">
       {/* 상품 정보 */}
       <div className="flex-1">
-        <Link href={`/products/${product?.id}`}>
+        <Link href={`/products/${product.id}`}>
           <h3 className="font-semibold text-lg hover:text-primary transition-colors">
-            {product?.name || "상품명 없음"}
+            {product.name}
           </h3>
         </Link>
-        {product?.category && (
+        {product.category && (
           <p className="text-sm text-muted-foreground mb-2">
             {getCategoryLabel(product.category)}
           </p>
         )}
         <p className="text-lg font-bold text-primary">
-          {formatPrice(product?.price || 0)}
+          {formatPrice(product.price)}
         </p>
         {maxQuantity < quantity && (
           <p className="text-sm text-destructive mt-1">
@@ -142,7 +164,7 @@ function CartItemCard({ item }: { item: CartItemWithProduct }) {
             variant="ghost"
             size="icon"
             onClick={handleRemove}
-            disabled={isPending}
+            disabled={isPending || isRemoving}
             className="text-destructive hover:text-destructive"
           >
             <Trash2 className="h-4 w-4" />

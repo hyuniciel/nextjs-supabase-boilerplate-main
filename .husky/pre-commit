@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# ESLint 실행
+pnpm lint --fix
+
+# TypeScript 타입 체크
+pnpm exec tsc --noEmit

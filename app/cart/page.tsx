@@ -70,21 +70,36 @@ export default async function CartPage() {
     );
   }
 
-  // 타입 변환
-  const items: CartItemWithProduct[] = (cartItems || []).map((item: any) => ({
-    id: item.id,
-    clerk_id: item.clerk_id,
-    product_id: item.product_id,
-    quantity: item.quantity,
-    created_at: item.created_at,
-    updated_at: item.updated_at,
-    product: Array.isArray(item.product) ? item.product[0] : item.product,
-  }));
+  // 타입 변환 및 데이터 검증
+  const items: CartItemWithProduct[] = (cartItems || [])
+    .map((item: any) => {
+      // product가 배열인 경우 첫 번째 요소 사용, 아니면 그대로 사용
+      const product = Array.isArray(item.product) ? item.product[0] : item.product;
+      
+      // product가 없는 경우 필터링
+      if (!product) {
+        return null;
+      }
+
+      return {
+        id: item.id,
+        clerk_id: item.clerk_id,
+        product_id: item.product_id,
+        quantity: item.quantity,
+        created_at: item.created_at,
+        updated_at: item.updated_at,
+        product: product,
+      };
+    })
+    .filter((item): item is CartItemWithProduct => item !== null);
 
   // 총액 계산
   const totalAmount = items.reduce((sum, item) => {
-    const product = item.product as any;
-    return sum + (product?.price || 0) * item.quantity;
+    const product = item.product;
+    if (!product || typeof product.price !== 'number') {
+      return sum;
+    }
+    return sum + product.price * item.quantity;
   }, 0);
 
   return (

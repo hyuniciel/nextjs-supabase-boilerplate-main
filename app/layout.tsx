@@ -19,8 +19,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SaaS 템플릿",
-  description: "Next.js + Clerk + Supabase 보일러플레이트",
+  title: {
+    default: "쇼핑몰 MVP",
+    template: "%s | 쇼핑몰 MVP",
+  },
+  description: "Next.js + Clerk + Supabase 기반 쇼핑몰 MVP",
+  keywords: ["쇼핑몰", "온라인 쇼핑", "의류", "패션"],
+  authors: [{ name: "Shopping Mall MVP" }],
+  creator: "Shopping Mall MVP",
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.vercel.app",
+    siteName: "쇼핑몰 MVP",
+    title: "쇼핑몰 MVP",
+    description: "Next.js + Clerk + Supabase 기반 쇼핑몰 MVP",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "쇼핑몰 MVP",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "쇼핑몰 MVP",
+    description: "Next.js + Clerk + Supabase 기반 쇼핑몰 MVP",
+    images: ["/og-image.png"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/icons/icon-192x192.png",
+  },
+  manifest: "/manifest.json",
 };
 
 /**
