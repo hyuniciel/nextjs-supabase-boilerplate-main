@@ -106,8 +106,8 @@ export default function CheckoutForm({ totalAmount }: CheckoutFormProps) {
   if (orderId) {
     return (
       <div className="space-y-6">
-        <div className="p-6 border rounded-lg bg-card">
-          <h2 className="text-xl font-semibold mb-4">주문이 생성되었습니다</h2>
+        <div className="p-6 border-2 border-purple-200 rounded-2xl bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 shadow-xl">
+          <h2 className="text-2xl font-extrabold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">주문이 생성되었습니다</h2>
           <p className="text-muted-foreground mb-4">
             아래에서 결제 수단을 선택하여 결제를 진행해주세요.
           </p>
@@ -132,16 +132,16 @@ export default function CheckoutForm({ totalAmount }: CheckoutFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <div className="p-6 border rounded-lg bg-card">
-          <h2 className="text-xl font-semibold mb-4">배송지 정보</h2>
+        <div className="p-6 border-2 border-purple-100 rounded-2xl bg-white shadow-lg">
+          <h2 className="text-2xl font-extrabold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">배송지 정보</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-5">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>받는 분 이름</FormLabel>
+                  <FormLabel className="text-base">받는 분 이름</FormLabel>
                   <FormControl>
                     <Input placeholder="홍길동" {...field} />
                   </FormControl>
@@ -208,8 +208,8 @@ export default function CheckoutForm({ totalAmount }: CheckoutFormProps) {
           </div>
         </div>
 
-        <div className="p-6 border rounded-lg bg-card">
-          <h2 className="text-xl font-semibold mb-4">주문 메모</h2>
+        <div className="p-6 border-2 border-purple-100 rounded-2xl bg-white shadow-lg">
+          <h2 className="text-2xl font-extrabold mb-5 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">주문 메모</h2>
           <FormField
             control={form.control}
             name="orderNote"
@@ -218,7 +218,7 @@ export default function CheckoutForm({ totalAmount }: CheckoutFormProps) {
                 <FormControl>
                   <Textarea
                     placeholder="배송 시 요청사항을 입력해주세요 (선택)"
-                    className="min-h-[100px]"
+                    className="min-h-[120px]"
                     {...field}
                   />
                 </FormControl>
@@ -229,12 +229,12 @@ export default function CheckoutForm({ totalAmount }: CheckoutFormProps) {
         </div>
 
         {error && (
-          <div className="p-4 bg-destructive/10 text-destructive rounded-lg">
+          <div className="p-5 bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 text-red-700 rounded-xl shadow-lg font-semibold">
             {error}
           </div>
         )}
 
-        <Button type="submit" size="lg" className="w-full" disabled={isPending}>
+        <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] font-bold text-lg py-6 rounded-xl" disabled={isPending}>
           {isPending ? "주문 처리 중..." : "주문하기"}
         </Button>
       </form>

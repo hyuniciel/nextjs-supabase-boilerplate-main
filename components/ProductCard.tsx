@@ -56,14 +56,17 @@ export default function ProductCard({ product, searchTerm }: ProductCardProps) {
   return (
     <Link
       href={`/products/${product.id}`}
-      className="group relative flex flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-md hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border-2 border-purple-50 bg-white text-card-foreground shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.05] hover:border-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
       aria-label={`${product.name} 상품 상세 보기`}
     >
       {/* 상품 이미지 */}
-      <ProductImage imageUrl={product.image_url} alt={product.name} />
+      <div className="relative overflow-hidden">
+        <ProductImage imageUrl={product.image_url} alt={product.name} />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </div>
 
       {/* 상품 정보 */}
-      <div className="flex flex-col gap-2 p-4">
+      <div className="flex flex-col gap-3 p-5 bg-gradient-to-b from-white to-purple-50/30">
         {/* 카테고리 */}
         {product.category && (
           <span className="text-xs font-medium text-muted-foreground">
@@ -84,18 +87,18 @@ export default function ProductCard({ product, searchTerm }: ProductCardProps) {
         )}
 
         {/* 가격 및 재고 상태 */}
-        <div className="flex items-center justify-between mt-auto pt-2">
-          <div className="flex flex-col">
-            <span className="text-xl font-bold text-primary">
+        <div className="flex items-center justify-between mt-auto pt-3 border-t border-purple-100">
+          <div className="flex flex-col gap-1">
+            <span className="text-2xl font-extrabold bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 bg-clip-text text-transparent">
               {formatPrice(product.price)}
             </span>
             {!isInStock && (
-              <span className="text-xs text-destructive font-medium">
+              <span className="text-xs text-white font-bold bg-gradient-to-r from-red-500 to-rose-500 px-3 py-1 rounded-full inline-block w-fit shadow-md">
                 품절
               </span>
             )}
             {isInStock && product.stock_quantity < 10 && (
-              <span className="text-xs text-orange-600 font-medium">
+              <span className="text-xs text-white font-bold bg-gradient-to-r from-orange-500 to-amber-500 px-3 py-1 rounded-full inline-block w-fit shadow-md">
                 재고 부족
               </span>
             )}

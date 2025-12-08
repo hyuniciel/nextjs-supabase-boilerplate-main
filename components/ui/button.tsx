@@ -10,16 +10,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
+          "bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 text-white shadow-xl hover:shadow-2xl hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 transition-all duration-300 transform hover:scale-105 font-semibold",
         destructive:
-          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          "bg-gradient-to-r from-red-500 via-rose-500 to-pink-500 text-white shadow-xl hover:shadow-2xl hover:from-red-600 hover:via-rose-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 font-semibold",
         outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+          "border-2 border-purple-300 bg-white shadow-lg hover:bg-gradient-to-r hover:from-purple-50 hover:via-pink-50 hover:to-rose-50 hover:border-purple-400 hover:text-purple-700 transition-all duration-300 font-semibold",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
+          "bg-gradient-to-r from-yellow-100 via-orange-100 to-amber-100 text-orange-700 shadow-lg hover:shadow-xl hover:from-yellow-200 hover:via-orange-200 hover:to-amber-200 transition-all duration-300 font-semibold",
         ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
+          "hover:bg-gradient-to-r hover:from-purple-50 hover:via-pink-50 hover:to-rose-50 hover:text-purple-700 transition-all duration-300 rounded-lg font-medium",
+        link: "text-purple-600 underline-offset-4 hover:underline hover:text-pink-600 transition-colors duration-300 font-semibold",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

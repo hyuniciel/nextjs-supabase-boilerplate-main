@@ -15,7 +15,7 @@
  */
 
 import { Suspense } from "react";
-import { createClient } from "@/lib/supabase/server";
+import { getServiceRoleClient } from "@/lib/supabase/service-role";
 import { Product } from "@/types/product";
 import ProductCard from "@/components/ProductCard";
 import ProductSortSelect from "@/components/ProductSortSelect";
@@ -45,7 +45,7 @@ async function getProducts(
   page: number = 1,
   search?: string
 ): Promise<{ products: Product[]; total: number }> {
-  const supabase = await createClient();
+  const supabase = getServiceRoleClient();
   const { column, ascending } = parseSortParam(sort);
 
   // 총 개수 조회
@@ -66,6 +66,8 @@ async function getProducts(
 
   if (countError) {
     console.error("Error counting products:", countError);
+    // 에러 상세 정보 로깅
+    console.error("Count error details:", JSON.stringify(countError, null, 2));
   }
 
   // 상품 목록 조회
@@ -91,6 +93,12 @@ async function getProducts(
 
   if (error) {
     console.error("Error fetching products:", error);
+    // 에러 상세 정보 로깅
+    console.error("Error details:", JSON.stringify(error, null, 2));
+    console.error("Error message:", error.message);
+    console.error("Error code:", error.code);
+    console.error("Error details:", error.details);
+    console.error("Error hint:", error.hint);
     return { products: [], total: 0 };
   }
 
@@ -208,19 +216,19 @@ export default async function ProductsPage({
   const search = params.search;
 
   return (
-    <main className="container mx-auto px-4 py-8 max-w-7xl">
+    <main className="container mx-auto px-4 py-8 max-w-7xl bg-white min-h-screen">
       {/* 페이지 헤더, 검색 및 정렬 */}
       <div className="mb-8 space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold mb-2">
+            <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
               {search
                 ? `&quot;${search}&quot; 검색 결과`
                 : category
                 ? getCategoryLabel(category)
                 : "전체 상품"}
             </h1>
-            <p className="text-muted-foreground">
+            <p className="text-gray-700 font-medium">
               {search
                 ? `&quot;${search}&quot;에 대한 검색 결과입니다.`
                 : category

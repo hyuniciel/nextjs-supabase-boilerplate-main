@@ -119,70 +119,70 @@ export default function PaymentWidget({
   }
 
   return (
-    <div className="space-y-4">
-      <div className="p-6 border rounded-lg bg-card">
-        <h2 className="text-xl font-semibold mb-4">결제 수단 선택</h2>
+    <div className="space-y-6">
+      <div className="p-8 border-2 border-purple-200 rounded-2xl bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 shadow-xl">
+        <h2 className="text-2xl font-extrabold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">결제 수단 선택</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Button
             type="button"
             variant={selectedMethod === "카드" ? "default" : "outline"}
-            className="h-auto py-4 flex flex-col items-center gap-2"
+            className="h-auto py-6 flex flex-col items-center gap-3 rounded-xl font-bold text-base transition-all duration-300 hover:scale-105"
             onClick={() => handlePayment("카드")}
             disabled={isLoading}
           >
-            <CreditCard className="w-6 h-6" />
+            <CreditCard className="w-8 h-8" />
             <span>카드 결제</span>
           </Button>
 
           <Button
             type="button"
             variant={selectedMethod === "계좌이체" ? "default" : "outline"}
-            className="h-auto py-4 flex flex-col items-center gap-2"
+            className="h-auto py-6 flex flex-col items-center gap-3 rounded-xl font-bold text-base transition-all duration-300 hover:scale-105"
             onClick={() => handlePayment("계좌이체")}
             disabled={isLoading}
           >
-            <Building2 className="w-6 h-6" />
+            <Building2 className="w-8 h-8" />
             <span>계좌이체</span>
           </Button>
 
           <Button
             type="button"
             variant={selectedMethod === "가상계좌" ? "default" : "outline"}
-            className="h-auto py-4 flex flex-col items-center gap-2"
+            className="h-auto py-6 flex flex-col items-center gap-3 rounded-xl font-bold text-base transition-all duration-300 hover:scale-105"
             onClick={() => handlePayment("가상계좌")}
             disabled={isLoading}
           >
-            <Building2 className="w-6 h-6" />
+            <Building2 className="w-8 h-8" />
             <span>가상계좌</span>
           </Button>
 
           <Button
             type="button"
             variant={selectedMethod === "휴대폰" ? "default" : "outline"}
-            className="h-auto py-4 flex flex-col items-center gap-2"
+            className="h-auto py-6 flex flex-col items-center gap-3 rounded-xl font-bold text-base transition-all duration-300 hover:scale-105"
             onClick={() => handlePayment("휴대폰")}
             disabled={isLoading}
           >
-            <Smartphone className="w-6 h-6" />
+            <Smartphone className="w-8 h-8" />
             <span>휴대폰 결제</span>
           </Button>
         </div>
       </div>
 
       {isLoading && (
-        <div className="flex items-center justify-center p-4 text-muted-foreground">
-          <Loader2 className="w-5 h-5 animate-spin mr-2" />
-          <span>결제를 진행하는 중...</span>
+        <div className="flex items-center justify-center p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border-2 border-purple-200">
+          <Loader2 className="w-6 h-6 animate-spin mr-3 text-purple-600" />
+          <span className="font-semibold text-purple-700">결제를 진행하는 중...</span>
         </div>
       )}
 
-      <div className="text-sm text-muted-foreground p-4 bg-muted rounded-lg space-y-2">
-        <p className="font-semibold">테스트 모드 안내</p>
-        <p>현재 테스트 모드로 운영 중입니다. 실제 결제는 발생하지 않습니다.</p>
-        <div className="mt-2 space-y-1">
-          <p className="font-semibold">테스트 정보:</p>
-          <ul className="list-disc list-inside space-y-1 text-xs">
-            <li>카드 번호: 0000-0000-0000-0000</li>
+      <div className="text-sm text-gray-700 p-6 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl border-2 border-yellow-200 shadow-lg space-y-3">
+        <p className="font-extrabold text-lg text-orange-700">테스트 모드 안내</p>
+        <p className="font-semibold">현재 테스트 모드로 운영 중입니다. 실제 결제는 발생하지 않습니다.</p>
+        <div className="mt-3 space-y-2 bg-white/60 p-4 rounded-lg">
+          <p className="font-bold text-purple-700">테스트 정보:</p>
+          <ul className="list-disc list-inside space-y-1.5 text-sm font-medium">
+            <li>카드 번호: <span className="font-mono text-purple-600">0000-0000-0000-0000</span></li>
             <li>유효기간: 아무 날짜 (예: 12/34)</li>
             <li>CVC: 아무 숫자 (예: 123)</li>
             <li>비밀번호: 아무 숫자</li>

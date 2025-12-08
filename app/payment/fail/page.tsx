@@ -33,25 +33,30 @@ export default async function PaymentFailPage({
   const errorMessage = params.message || params.error;
 
   return (
-    <main className="container mx-auto px-4 py-16 max-w-2xl">
-      <div className="flex flex-col items-center text-center space-y-6">
-        <div className="rounded-full bg-red-100 dark:bg-red-900/20 p-6">
-          <XCircle className="w-16 h-16 text-red-600 dark:text-red-400" />
+    <main className="container mx-auto px-4 py-20 max-w-2xl bg-white min-h-screen">
+      <div className="flex flex-col items-center text-center space-y-8">
+        <div className="relative">
+          <div className="absolute inset-0 bg-red-400 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+          <div className="relative rounded-2xl bg-gradient-to-br from-red-400 to-rose-500 p-8 shadow-2xl">
+            <XCircle className="w-24 h-24 text-white drop-shadow-lg" />
+          </div>
         </div>
 
-        <div className="space-y-2">
-          <h1 className="text-3xl font-bold">결제에 실패했습니다</h1>
-          <p className="text-muted-foreground text-lg">
+        <div className="space-y-3">
+          <h1 className="text-4xl font-extrabold bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">
+            결제에 실패했습니다
+          </h1>
+          <p className="text-gray-700 text-xl font-semibold">
             결제 처리 중 문제가 발생했습니다.
           </p>
         </div>
 
         {errorMessage && (
-          <div className="w-full p-4 bg-destructive/10 text-destructive rounded-lg">
-            <p className="font-semibold mb-1">오류 메시지</p>
-            <p className="text-sm">{errorMessage}</p>
+          <div className="w-full p-6 bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200 text-red-700 rounded-xl shadow-lg">
+            <p className="font-extrabold mb-2 text-lg">오류 메시지</p>
+            <p className="font-semibold">{errorMessage}</p>
             {errorCode && (
-              <p className="text-xs mt-2 text-muted-foreground">
+              <p className="text-sm mt-3 text-red-600 font-mono bg-white/60 px-3 py-1 rounded-lg inline-block">
                 오류 코드: {errorCode}
               </p>
             )}
@@ -59,35 +64,35 @@ export default async function PaymentFailPage({
         )}
 
         {orderId && (
-          <div className="w-full p-4 bg-muted rounded-lg">
-            <p className="text-sm text-muted-foreground mb-1">주문 번호</p>
-            <p className="font-mono font-semibold">{orderId}</p>
+          <div className="w-full p-6 bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 rounded-xl shadow-lg">
+            <p className="text-sm font-bold text-gray-700 mb-2">주문 번호</p>
+            <p className="font-mono font-extrabold text-xl text-purple-600">{orderId}</p>
           </div>
         )}
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center w-full pt-4">
           {orderId && (
             <Link href={`/orders/${orderId}`} className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full">
+              <Button variant="outline" size="lg" className="w-full font-bold">
                 주문 상세 보기
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
           )}
           <Link href="/orders" className="w-full sm:w-auto">
-            <Button variant="outline" size="lg" className="w-full">
+            <Button variant="outline" size="lg" className="w-full font-bold">
               주문 내역 보기
             </Button>
           </Link>
           <Link href="/products" className="w-full sm:w-auto">
-            <Button size="lg" className="w-full">
+            <Button size="lg" className="w-full bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-bold">
               쇼핑 계속하기
               <RefreshCw className="ml-2 w-4 h-4" />
             </Button>
           </Link>
         </div>
 
-        <div className="pt-4 text-sm text-muted-foreground">
+        <div className="pt-6 text-base font-semibold text-gray-600 bg-purple-50 px-6 py-3 rounded-xl">
           <p>문제가 계속되면 고객센터로 문의해주세요.</p>
         </div>
       </div>

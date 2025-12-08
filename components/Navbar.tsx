@@ -15,9 +15,9 @@ import { ThemeToggle } from "./ThemeToggle";
  */
 const Navbar = () => {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex justify-between items-center p-4 gap-4 h-16 max-w-7xl mx-auto">
-        <Link href="/" className="text-xl sm:text-2xl font-bold" aria-label="홈으로 이동">
+    <header className="sticky top-0 z-50 w-full border-b-2 border-purple-100 bg-white/98 backdrop-blur-md supports-[backdrop-filter]:bg-white/95 shadow-lg">
+      <div className="flex justify-between items-center p-4 gap-4 h-18 max-w-7xl mx-auto">
+        <Link href="/" className="text-xl sm:text-2xl font-extrabold bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 bg-clip-text text-transparent hover:from-purple-700 hover:via-pink-700 hover:to-rose-700 transition-all duration-300" aria-label="홈으로 이동">
           쇼핑몰 MVP
         </Link>
       <nav className="flex gap-2 sm:gap-4 items-center" aria-label="주요 네비게이션">

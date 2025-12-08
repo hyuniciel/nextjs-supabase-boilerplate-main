@@ -75,9 +75,9 @@ export default function RootLayout({
         cssLayerName: "clerk", // Tailwind CSS v4 호환성
       }}
     >
-      <html lang="ko">
+      <html lang="ko" className="bg-white">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
         >
           <ErrorBoundaryProvider>
             <SyncUserProvider>

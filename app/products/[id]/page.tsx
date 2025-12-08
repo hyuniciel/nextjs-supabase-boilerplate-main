@@ -8,7 +8,7 @@
  * @see components/ProductCard.tsx
  */
 
-import { createClient } from "@/lib/supabase/server";
+import { getServiceRoleClient } from "@/lib/supabase/service-role";
 import { Product } from "@/types/product";
 import { formatPrice, getCategoryLabel } from "@/lib/utils/products";
 import { notFound } from "next/navigation";
@@ -32,7 +32,7 @@ export default async function ProductDetailPage({
   params,
 }: ProductDetailPageProps) {
   const { id } = await params;
-  const supabase = await createClient();
+  const supabase = getServiceRoleClient();
 
   const { data, error } = await supabase
     .from("products")
@@ -49,7 +49,7 @@ export default async function ProductDetailPage({
   const isInStock = product.stock_quantity > 0;
 
   return (
-    <main className="container mx-auto px-4 py-8 max-w-6xl">
+    <main className="container mx-auto px-4 py-8 max-w-6xl bg-white min-h-screen">
       {/* 뒤로가기 버튼 */}
       <Link href="/products">
         <Button variant="ghost" className="mb-6">

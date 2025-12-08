@@ -56,8 +56,8 @@ export default async function CheckoutPage() {
   }, 0);
 
   return (
-    <main className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-3xl font-bold mb-8">주문하기</h1>
+    <main className="container mx-auto px-4 py-8 max-w-4xl bg-white min-h-screen">
+      <h1 className="text-3xl font-bold mb-8 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">주문하기</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* 주문 폼 */}
@@ -67,24 +67,24 @@ export default async function CheckoutPage() {
 
         {/* 주문 요약 */}
         <div className="lg:col-span-1">
-          <div className="p-6 border rounded-lg bg-card sticky top-4">
-            <h2 className="text-xl font-semibold mb-4">주문 요약</h2>
-            <div className="space-y-2 mb-4">
+          <div className="p-6 border-2 border-purple-200 rounded-2xl bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 shadow-xl sticky top-4">
+            <h2 className="text-2xl font-extrabold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">주문 요약</h2>
+            <div className="space-y-3 mb-6">
               {cartItems.map((item) => {
                 const product = item.product as any;
                 return (
-                  <div key={item.id} className="flex justify-between text-sm">
-                    <span>
+                  <div key={item.id} className="flex justify-between text-sm bg-white/60 p-3 rounded-lg">
+                    <span className="font-semibold text-gray-700">
                       {product?.name} × {item.quantity}
                     </span>
-                    <span>{formatPrice((product?.price || 0) * item.quantity)}</span>
+                    <span className="font-bold text-purple-600">{formatPrice((product?.price || 0) * item.quantity)}</span>
                   </div>
                 );
               })}
             </div>
-            <div className="border-t pt-4 flex justify-between items-center">
-              <span className="text-lg font-semibold">총 주문 금액</span>
-              <span className="text-2xl font-bold text-primary">
+            <div className="border-t-2 border-purple-200 pt-6 flex justify-between items-center bg-white/60 p-4 rounded-xl">
+              <span className="text-xl font-bold text-gray-700">총 주문 금액</span>
+              <span className="text-3xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 {formatPrice(totalAmount)}
               </span>
             </div>

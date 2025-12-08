@@ -68,45 +68,50 @@ export default async function OrderDetailPage({
   const shippingAddress = orderWithItems.shipping_address as any;
 
   return (
-    <main className="container mx-auto px-4 py-8 max-w-4xl">
+    <main className="container mx-auto px-4 py-8 max-w-4xl bg-white min-h-screen">
       {/* 뒤로가기 버튼 */}
       <Link href="/orders">
-        <Button variant="ghost" className="mb-6">
+        <Button variant="ghost" className="mb-6 hover:bg-purple-50">
           <ArrowLeft className="mr-2 w-4 h-4" />
           주문 목록으로
         </Button>
       </Link>
 
       {/* 주문 완료 메시지 */}
-      <div className="flex flex-col items-center text-center mb-8 p-6 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-900">
-        <CheckCircle2 className="w-16 h-16 text-green-600 dark:text-green-400 mb-4" />
-        <h1 className="text-2xl font-bold mb-2">주문이 완료되었습니다!</h1>
-        <p className="text-muted-foreground">
-          주문 번호: {orderWithItems.id}
+      <div className="flex flex-col items-center text-center mb-10 p-8 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 rounded-2xl border-2 border-green-200 shadow-xl">
+        <div className="relative mb-6">
+          <div className="absolute inset-0 bg-green-400 rounded-full blur-2xl opacity-30 animate-pulse"></div>
+          <CheckCircle2 className="relative w-20 h-20 text-green-600" />
+        </div>
+        <h1 className="text-3xl font-extrabold mb-3 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+          주문이 완료되었습니다!
+        </h1>
+        <p className="text-gray-700 font-semibold">
+          주문 번호: <span className="font-mono text-purple-600">{orderWithItems.id}</span>
         </p>
       </div>
 
       {/* 주문 정보 */}
       <div className="space-y-6">
         {/* 주문 상태 */}
-        <div className="p-6 border rounded-lg bg-card">
-          <h2 className="text-xl font-semibold mb-4">주문 상태</h2>
+        <div className="p-6 border-2 border-purple-100 rounded-2xl bg-white shadow-lg">
+          <h2 className="text-2xl font-extrabold mb-5 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">주문 상태</h2>
           <div className="flex items-center gap-2">
             <span
-              className={`px-3 py-1 rounded-full text-sm font-medium ${
+              className={`px-4 py-2 rounded-full text-sm font-bold shadow-md ${
                 orderWithItems.status === "pending"
-                  ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400"
+                  ? "bg-gradient-to-r from-yellow-400 to-amber-400 text-white"
                   : orderWithItems.status === "paid"
-                  ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400"
+                  ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white"
                   : orderWithItems.status === "payment_failed"
-                  ? "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400"
+                  ? "bg-gradient-to-r from-red-500 to-rose-500 text-white"
                   : orderWithItems.status === "confirmed"
-                  ? "bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400"
+                  ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white"
                   : orderWithItems.status === "shipped"
-                  ? "bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-400"
+                  ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white"
                   : orderWithItems.status === "delivered"
-                  ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400"
-                  : "bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400"
+                  ? "bg-gradient-to-r from-green-500 to-teal-500 text-white"
+                  : "bg-gradient-to-r from-gray-400 to-slate-400 text-white"
               }`}
             >
               {orderWithItems.status === "pending"
@@ -128,8 +133,8 @@ export default async function OrderDetailPage({
 
         {/* 배송지 정보 */}
         {shippingAddress && (
-          <div className="p-6 border rounded-lg bg-card">
-            <h2 className="text-xl font-semibold mb-4">배송지 정보</h2>
+          <div className="p-6 border-2 border-purple-100 rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 shadow-lg">
+            <h2 className="text-2xl font-extrabold mb-5 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">배송지 정보</h2>
             <div className="space-y-1 text-sm">
               <p>
                 <span className="font-medium">받는 분:</span> {shippingAddress.name}
@@ -148,8 +153,8 @@ export default async function OrderDetailPage({
 
         {/* 주문 메모 */}
         {orderWithItems.order_note && (
-          <div className="p-6 border rounded-lg bg-card">
-            <h2 className="text-xl font-semibold mb-4">주문 메모</h2>
+          <div className="p-6 border-2 border-purple-100 rounded-2xl bg-white shadow-lg">
+            <h2 className="text-2xl font-extrabold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">주문 메모</h2>
             <p className="text-sm text-muted-foreground whitespace-pre-line">
               {orderWithItems.order_note}
             </p>
@@ -157,33 +162,33 @@ export default async function OrderDetailPage({
         )}
 
         {/* 주문 상세 항목 */}
-        <div className="p-6 border rounded-lg bg-card">
-          <h2 className="text-xl font-semibold mb-4">주문 상세</h2>
+        <div className="p-6 border-2 border-purple-100 rounded-2xl bg-white shadow-lg">
+          <h2 className="text-2xl font-extrabold mb-5 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">주문 상세</h2>
           <div className="space-y-4">
             {orderWithItems.order_items.map((item) => (
               <div
                 key={item.id}
-                className="flex justify-between items-start pb-4 border-b last:border-0"
+                className="flex justify-between items-start pb-4 mb-4 border-b-2 border-purple-100 last:border-0 last:pb-0 last:mb-0 bg-purple-50/30 p-4 rounded-xl"
               >
                 <div className="flex-1">
-                  <h3 className="font-semibold">{item.product_name}</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="font-bold text-lg text-gray-800">{item.product_name}</h3>
+                  <p className="text-sm font-semibold text-purple-600 mt-1">
                     수량: {item.quantity}개
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="font-semibold">
+                  <p className="font-extrabold text-xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                     {formatPrice(item.price * item.quantity)}
                   </p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm font-semibold text-gray-600 mt-1">
                     {formatPrice(item.price)} × {item.quantity}
                   </p>
                 </div>
               </div>
             ))}
-            <div className="flex justify-between items-center pt-4 border-t">
-              <span className="text-lg font-semibold">총 주문 금액</span>
-              <span className="text-2xl font-bold text-primary">
+            <div className="flex justify-between items-center pt-6 border-t-2 border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-xl">
+              <span className="text-xl font-bold text-gray-700">총 주문 금액</span>
+              <span className="text-3xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 {formatPrice(orderWithItems.total_amount)}
               </span>
             </div>
@@ -191,9 +196,9 @@ export default async function OrderDetailPage({
         </div>
 
         {/* 주문 일시 */}
-        <div className="p-6 border rounded-lg bg-card">
-          <p className="text-sm text-muted-foreground">
-            주문 일시: {new Date(orderWithItems.created_at).toLocaleString("ko-KR")}
+        <div className="p-6 border-2 border-purple-100 rounded-2xl bg-white shadow-lg">
+          <p className="text-sm font-semibold text-gray-600">
+            주문 일시: <span className="text-purple-600">{new Date(orderWithItems.created_at).toLocaleString("ko-KR")}</span>
           </p>
         </div>
       </div>

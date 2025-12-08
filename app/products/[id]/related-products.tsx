@@ -7,7 +7,7 @@
  * @see components/ProductCard.tsx
  */
 
-import { createClient } from "@/lib/supabase/server";
+import { getServiceRoleClient } from "@/lib/supabase/service-role";
 import { Product } from "@/types/product";
 import ProductCard from "@/components/ProductCard";
 
@@ -27,7 +27,7 @@ export default async function RelatedProducts({
     return null;
   }
 
-  const supabase = await createClient();
+  const supabase = getServiceRoleClient();
 
   // 같은 카테고리의 다른 상품 조회 (최대 4개)
   const { data: products, error } = await supabase

@@ -51,8 +51,8 @@ export default async function OrdersPage() {
   }
 
   return (
-    <main className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-3xl font-bold mb-8">주문 내역</h1>
+    <main className="container mx-auto px-4 py-8 max-w-4xl bg-white min-h-screen">
+      <h1 className="text-3xl font-bold mb-8 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">주문 내역</h1>
 
       {!orders || orders.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
@@ -74,7 +74,7 @@ export default async function OrdersPage() {
             <Link
               key={order.id}
               href={`/orders/${order.id}`}
-              className="block p-6 border rounded-lg bg-card hover:shadow-md transition-shadow"
+              className="block p-6 border-2 border-purple-100 rounded-2xl bg-white hover:shadow-xl hover:scale-[1.02] transition-all duration-300 hover:border-purple-200"
             >
               <div className="flex justify-between items-start">
                 <div className="flex-1">

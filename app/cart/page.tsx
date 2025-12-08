@@ -103,8 +103,8 @@ export default async function CartPage() {
   }, 0);
 
   return (
-    <main className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-3xl font-bold mb-8">장바구니</h1>
+    <main className="container mx-auto px-4 py-8 max-w-4xl bg-white min-h-screen">
+      <h1 className="text-3xl font-bold mb-8 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">장바구니</h1>
 
       {items.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
@@ -125,15 +125,15 @@ export default async function CartPage() {
           <CartItemList items={items} />
 
           {/* 총액 및 결제 버튼 */}
-          <div className="mt-8 p-6 border rounded-lg bg-card">
+          <div className="mt-8 p-6 border-2 border-purple-200 rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 shadow-lg">
             <div className="flex justify-between items-center mb-6">
-              <span className="text-lg font-semibold">총 주문 금액</span>
-              <span className="text-2xl font-bold text-primary">
+              <span className="text-lg font-semibold text-gray-700">총 주문 금액</span>
+              <span className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 {formatPrice(totalAmount)}
               </span>
             </div>
             <Link href="/checkout" className="block">
-              <Button size="lg" className="w-full">
+              <Button size="lg" className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-lg hover:shadow-xl">
                 주문하기
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>

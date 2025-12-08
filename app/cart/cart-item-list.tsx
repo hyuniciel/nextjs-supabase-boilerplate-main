@@ -97,20 +97,20 @@ function CartItemCard({ item }: { item: CartItemWithProduct }) {
   }
 
   return (
-    <div className="flex gap-4 p-4 border rounded-lg bg-card">
+    <div className="flex gap-6 p-6 border-2 border-purple-100 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:border-purple-200 hover:scale-[1.01]">
       {/* 상품 정보 */}
       <div className="flex-1">
         <Link href={`/products/${product.id}`}>
-          <h3 className="font-semibold text-lg hover:text-primary transition-colors">
+          <h3 className="font-bold text-xl hover:text-purple-600 transition-colors duration-300 mb-2">
             {product.name}
           </h3>
         </Link>
         {product.category && (
-          <p className="text-sm text-muted-foreground mb-2">
+          <p className="text-sm font-semibold text-purple-600 bg-purple-50 px-2 py-1 rounded-full w-fit mb-3">
             {getCategoryLabel(product.category)}
           </p>
         )}
-        <p className="text-lg font-bold text-primary">
+        <p className="text-2xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
           {formatPrice(product.price)}
         </p>
         {maxQuantity < quantity && (
@@ -157,17 +157,17 @@ function CartItemCard({ item }: { item: CartItemWithProduct }) {
           </Button>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-sm text-muted-foreground">
-            소계: {formatPrice(itemTotal)}
+          <span className="text-base font-bold text-gray-700 bg-purple-50 px-3 py-1.5 rounded-lg">
+            소계: <span className="text-purple-600">{formatPrice(itemTotal)}</span>
           </span>
           <Button
             variant="ghost"
             size="icon"
             onClick={handleRemove}
             disabled={isPending || isRemoving}
-            className="text-destructive hover:text-destructive"
+            className="text-red-500 hover:text-white hover:bg-red-500 transition-all duration-300 rounded-lg"
           >
-            <Trash2 className="h-4 w-4" />
+            <Trash2 className="h-5 w-5" />
           </Button>
         </div>
       </div>
